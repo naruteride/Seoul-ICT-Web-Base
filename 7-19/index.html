@@ -1,15 +1,77 @@
 <!DOCTYPE html>
 <html lang="ko">
+
 <head>
-    <title>밀키트 + 컵라면 레시피 모음</title>
+    <meta charset="UTF-8">
+    <title>컵라면 레시피 모음</title>
+
+    <style type="text/css">
+        body {
+            display: grid;
+            grid-template-areas:
+                "nav header"
+                "nav main"
+                "nav footer";
+            grid-template: 4rem 1fr 8rem / 20rem 1fr;
+        }
+        nav {
+            grid-area: "nav";
+        }
+        header {
+            grid-area: "header";
+        }
+        main {
+            grid-area: "main";
+        }
+        footer {
+            grid-area: "footer";
+        }
+    </style>
 </head>
+
 <body>
     <nav>
-        <logo></logo>
+        <img src="./logo.png" />
+        <span>컵라멘</span>
+        <hr />
+        <ul>
+            <li>
+                <span>필터</span>
+                <button>
+                    초기화
+                </button>
+            </li>
+            <hr />
+            <li>
+                <span>비빔</span>
+                <input type="checkbox" />
+            </li>
+            <li>
+                <span>국물</span>
+                <input type="checkbox" />
+            </li>
+            <li>
+                <span>짜장</span>
+                <input type="checkbox" />
+            </li>
+            <li>
+                <span>농심</span>
+                <input type="checkbox" />
+            </li>
+            <li>
+                <span>오뚜기</span>
+                <input type="checkbox" />
+            </li>
+        </ul>
     </nav>
     <header>
         <search>
-
+            <form method="get" action="#">
+                <input type="search" placeholder="짜파게티, 신라면 ...">
+                <button type="submit">
+                    검색
+                </button>
+            </form>
         </search>
     </header>
     <main>
@@ -19,4 +81,5 @@
 
     </footer>
 </body>
+
 </html>
