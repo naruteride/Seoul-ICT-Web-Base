@@ -6,34 +6,115 @@
     <title>컵라면 레시피 모음</title>
 
     <style type="text/css">
+        :root {
+            --header-height: 4rem;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
         body {
             display: grid;
-            grid-template: 4rem 1fr 8rem / 20rem 1fr;
+            grid-template: var(--header-height) 1fr calc(var(--header-height) * 2) / 20rem 1fr;
             grid-template-areas:
                 "nav header"
                 "nav main"
                 "nav footer";
+            height: 100vh;
+            margin: 0;
+            background-image: url("background-image.svg");
         }
+
         nav {
             grid-area: nav;
+            background-color: #ffdda1;
+            padding: 1rem;
+            font-size: 1.5rem;
         }
+
+        .logo {
+            height: var(--header-height);
+            display: flex;
+            justify-content: space-between;
+            align-items: stretch;
+        }
+
+        .logo>span {
+            flex-grow: 1;
+            display: flex;
+            align-items: center;
+            font-size: 2rem;
+            font-weight: bold;
+            color: red;
+        }
+
         header {
             grid-area: header;
         }
+
+        header>form {
+            width: 100%;
+            height: 100%;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+        }
+
+        header input, header button {
+            font-size: 1.5rem;
+        }
+
+        header input[type="search"] {
+            flex-grow: 1;
+        }
+
         main {
             grid-area: main;
+            padding: 1rem;
+            display: grid;
+            grid-template: auto / repeat(auto-fill, 100px);
+            gap: 1rem;
+            justify-items: stretch;
+            align-content: start;
         }
+
+        .cup-ramen {
+            height: 9rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: stretch;
+            align-items: stretch;
+            text-decoration: none;
+            color: inherit;
+            text-align: center;
+        }
+
+        .cup-ramen>img {
+            flex-grow: 1;
+            object-position: center;
+            object-fit: contain;
+        }
+
         footer {
             grid-area: footer;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.125);
         }
     </style>
 </head>
 
 <body>
     <nav>
-        <img src="./logo.png" />
-        <span>컵라멘</span>
-        <hr />
+        <div class="logo">
+            <img src="./logo.svg" />
+            <span>컵라멘</span>
+        </div>
         <ul>
             <li>
                 <span>필터</span>
@@ -43,42 +124,99 @@
             </li>
             <hr />
             <li>
-                <span>비빔</span>
-                <input type="checkbox" />
+                <label for="mix">비빔</label>
+                <input id="mix" type="checkbox" />
             </li>
             <li>
-                <span>국물</span>
-                <input type="checkbox" />
+                <label for="soup">국물</label>
+                <input id="soup" type="checkbox" />
             </li>
             <li>
-                <span>짜장</span>
-                <input type="checkbox" />
+                <label for="black-been">짜장</label>
+                <input id="black-been" type="checkbox" />
             </li>
             <li>
-                <span>농심</span>
-                <input type="checkbox" />
+                <label for="nong">농심</label>
+                <input id="nong" type="checkbox" />
             </li>
             <li>
-                <span>오뚜기</span>
-                <input type="checkbox" />
+                <label for="o">오뚜기</label>
+                <input id="o" type="checkbox" />
             </li>
         </ul>
     </nav>
     <header>
-        <search>
-            <form method="get" action="#">
-                <input type="search" placeholder="짜파게티, 신라면 ...">
-                <button type="submit">
-                    검색
-                </button>
-            </form>
-        </search>
+        <form method="get" action="#">
+            <input type="search" placeholder="짜파게티, 신라면 ...">
+            <button type="submit">
+                검색
+            </button>
+        </form>
     </header>
     <main>
-        메인
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/908/248/img/1248908_1.jpg?_v=20230713151229" />
+            <span>짜파게티</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/798/989/img/3989798_1.jpg?_v=20201218154722" />
+            <span>팔도비빔면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://i.namu.wiki/i/jClhQW9IzWzChMsYJCk3XutdPxZDgidOQWTLIl-RaTiQKTC2k9DpkKexh7AiW-_Zyxfa7tmGqClNc4d8e0Va6w.webp" />
+            <span>튀김우동</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/886/762/img/16762886_1.jpg?_v=20220406110408" />
+            <span>공화춘</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/235/401/img/14401235_1.jpg?_v=20220217162319" />
+            <span>홍라면 매운치즈면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
+        <a class="cup-ramen" href="#">
+            <img src="https://img.danawa.com/prod_img/500000/852/238/img/1238852_1.jpg?_v=20180321135527" />
+            <span>신라면</span>
+        </a>
     </main>
     <footer>
-        푸터
+        라이선스 2023-07-20
     </footer>
 </body>
 
