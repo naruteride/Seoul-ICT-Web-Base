@@ -5,13 +5,72 @@
     <meta charset="UTF-8">
     <title>컵라면 레시피 모음</title>
 
+    <!-- Google fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@400;700&display=swap" rel="stylesheet">
+
     <style type="text/css">
         :root {
             --header-height: 4rem;
+            --text-red: #bb2b2b;
+            --logo-color: #FF4D4D;
+            --button-background: #a62626;
         }
 
         * {
             box-sizing: border-box;
+        }
+
+        label,
+        input[type="checkbox"],
+        input[type="button"],
+        button {
+            cursor: pointer;
+        }
+
+        button,
+        input[type="button"] {
+            display: inline-block;
+            height: 2.25rem;
+            padding: 0 16px;
+            color: #fff;
+            line-height: 2.25rem;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            outline: 0;
+            background-color: var(--button-background);
+            border: none;
+            border-radius: 0.2rem;
+        }
+
+        button:hover,
+        input[type="button"]:hover {
+            background-color: var(--text-red);
+        }
+
+        input[type="checkbox"] {
+            overflow: visible;
+            width: 0;
+            height: 0;
+            margin: 0 1rem 1rem 0;
+            color: var(--logo-color);
+        }
+
+        input[type="checkbox"]:not(:checked)::after {
+            content: url(./square-check-regular.svg);
+            display: block;
+            width: 1rem;
+            height: 1rem;
+        }
+
+        input[type="checkbox"]:checked::after {
+            content: url(./square-check-solid.svg);
+            display: block;
+            width: 1rem;
+            height: 1rem;
+            /* filter: drop-shadow(0 0 0.1rem var(--logo-color)); */
+            /* box-shadow: 0 0 0.1rem var(--logo-color); */
         }
 
         body {
@@ -24,29 +83,47 @@
             height: 100vh;
             margin: 0;
             background-image: url("background-image.svg");
+            font-family: 'Noto Sans KR', sans-serif;
         }
 
         nav {
             grid-area: nav;
             background-color: #ffdda1;
-            padding: 1rem;
+            padding: 1.5rem;
             font-size: 1.5rem;
+            color: #a62626;
         }
 
         .logo {
             height: var(--header-height);
             display: flex;
-            justify-content: space-between;
+            justify-content: center;
             align-items: stretch;
         }
 
         .logo>span {
-            flex-grow: 1;
             display: flex;
             align-items: center;
             font-size: 2rem;
             font-weight: bold;
-            color: red;
+            color: #FF4D4D;
+        }
+
+        nav ul {
+            padding: 0;
+        }
+
+        nav li {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin: 1rem 0;
+        }
+
+        nav label {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
         }
 
         header {
@@ -63,12 +140,16 @@
             padding: 1rem;
         }
 
-        header input, header button {
+        header input {
             font-size: 1.5rem;
         }
 
         header input[type="search"] {
             flex-grow: 1;
+            padding: 6px;
+            border: none;
+            border-radius: 0.2rem;
+            box-shadow: 0 0 0.125rem 0.125rem rgba(255, 77, 77, 0.125);
         }
 
         main {
@@ -116,7 +197,7 @@
             <span>컵라멘</span>
         </div>
         <ul>
-            <li>
+            <li class="filter">
                 <span>필터</span>
                 <button>
                     초기화
@@ -124,24 +205,148 @@
             </li>
             <hr />
             <li>
-                <label for="mix">비빔</label>
+                <label for="spicy">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M428.3 3c11.6-6.4 26.2-2.3 32.6 9.3l4.8 8.7c19.3 34.7 19.8 75.7 3.4 110C495.8 159.6 512 197.9 512 240c0 18.5-3.1 36.3-8.9 52.8c-6.1 17.3-28.5 16.3-36.8-.1l-11.7-23.4c-4.1-8.1-12.4-13.3-21.5-13.3H360c-13.3 0-24-10.7-24-24V152c0-13.3-10.7-24-24-24l-17.1 0c-21.3 0-30-23.9-10.8-32.9C304.7 85.4 327.7 80 352 80c28.3 0 54.8 7.3 77.8 20.2c5.5-18.2 3.7-38.4-6-55.8L419 35.7c-6.4-11.6-2.3-26.2 9.3-32.6zM171.2 345.5L264 160l40 0v80c0 26.5 21.5 48 48 48h76.2l23.9 47.8C372.3 443.9 244.3 512 103.2 512H44.4C19.9 512 0 492.1 0 467.6c0-20.8 14.5-38.8 34.8-43.3l49.8-11.1c37.6-8.4 69.5-33.2 86.7-67.7z" />
+                    </svg>
+                    매움
+                </label>
+                <input id="spicy" type="checkbox" />
+            </li>
+            <li>
+                <label for="mild">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M512 32c0 113.6-84.6 207.5-194.2 222c-7.1-53.4-30.6-101.6-65.3-139.3C290.8 46.3 364 0 448 0h32c17.7 0 32 14.3 32 32zM0 96C0 78.3 14.3 64 32 64H64c123.7 0 224 100.3 224 224v32V480c0 17.7-14.3 32-32 32s-32-14.3-32-32V320C100.3 320 0 219.7 0 96z" />
+                    </svg>
+                    순함
+                </label>
+                <input id="mild" type="checkbox" />
+            </li>
+            <li>
+                <label for="mix">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 448 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M0 64v348.9c0 56.2 88 58.1 88 0V174.3c7.9-52.9 88-50.4 88 6.5v175.3c0 57.9 96 58 96 0V240c5.3-54.7 88-52.5 88 4.3v23.8c0 59.9 88 56.6 88 0V64H0z" />
+                    </svg>
+                    비빔
+                </label>
                 <input id="mix" type="checkbox" />
             </li>
             <li>
-                <label for="soup">국물</label>
+                <label for="soup">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M269.5 69.9c11.1-7.9 25.9-7.9 37 0C329 85.4 356.5 96 384 96c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 149.7 417 160 384 160c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4C42.8 92.6 61 83.5 75.3 71.6c11.1-9.5 27.3-10.1 39.2-1.7l0 0C136.7 85.2 165.1 96 192 96c27.5 0 55-10.6 77.5-26.1zm37 288C329 373.4 356.5 384 384 384c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 437.7 417 448 384 448c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.4 27.3-10.1 39.2-1.7l0 0C136.7 373.2 165.1 384 192 384c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0zm0-144C329 229.4 356.5 240 384 240c26.9 0 55.4-10.8 77.4-26.1l0 0c11.9-8.5 28.1-7.8 39.2 1.7c14.4 11.9 32.5 21 50.6 25.2c17.2 4 27.9 21.2 23.9 38.4s-21.2 27.9-38.4 23.9c-24.5-5.7-44.9-16.5-58.2-25C449.5 293.7 417 304 384 304c-31.9 0-60.6-9.9-80.4-18.9c-5.8-2.7-11.1-5.3-15.6-7.7c-4.5 2.4-9.7 5.1-15.6 7.7c-19.8 9-48.5 18.9-80.4 18.9c-33 0-65.5-10.3-94.5-25.8c-13.4 8.4-33.7 19.3-58.2 25c-17.2 4-34.4-6.7-38.4-23.9s6.7-34.4 23.9-38.4c18.1-4.2 36.2-13.3 50.6-25.2c11.1-9.5 27.3-10.1 39.2-1.7l0 0C136.7 229.2 165.1 240 192 240c27.5 0 55-10.6 77.5-26.1c11.1-7.9 25.9-7.9 37 0z" />
+                    </svg>
+                    국물
+                </label>
                 <input id="soup" type="checkbox" />
             </li>
             <li>
-                <label for="black-been">짜장</label>
+                <label for="black-been">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 512 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M166 116.9c0 23.4-16.4 49.1-72.5 49.1H23.4l21-88.8h67.8c42.1 0 53.8 23.3 53.8 39.7zm126.2-39.7h-67.8L205.7 166h70.1c53.8 0 70.1-25.7 70.1-49.1.1-16.4-11.6-39.7-53.7-39.7zM88.8 208.1H21L0 296.9h70.1c56.1 0 72.5-23.4 72.5-49.1 0-16.3-11.7-39.7-53.8-39.7zm180.1 0h-67.8l-18.7 88.8h70.1c53.8 0 70.1-23.4 70.1-49.1 0-16.3-11.7-39.7-53.7-39.7zm189.3-53.8h-67.8l-18.7 88.8h70.1c53.8 0 70.1-23.4 70.1-49.1.1-16.3-11.6-39.7-53.7-39.7zm-28 137.9h-67.8L343.7 381h70.1c56.1 0 70.1-23.4 70.1-49.1 0-16.3-11.6-39.7-53.7-39.7zM240.8 346H173l-18.7 88.8h70.1c56.1 0 70.1-25.7 70.1-49.1.1-16.3-11.6-39.7-53.7-39.7z" />
+                    </svg>
+                    짜장
+                </label>
                 <input id="black-been" type="checkbox" />
             </li>
             <li>
-                <label for="nong">농심</label>
+                <label for="nong">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M64 32C46.3 32 32 46.3 32 64V304v48 80c0 26.5 21.5 48 48 48H496c26.5 0 48-21.5 48-48V304 152.2c0-18.2-19.4-29.7-35.4-21.1L352 215.4V152.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4V64c0-17.7-14.3-32-32-32H64z" />
+                    </svg>
+                    농심
+                </label>
                 <input id="nong" type="checkbox" />
             </li>
             <li>
-                <label for="o">오뚜기</label>
+                <label for="o">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M64 32C46.3 32 32 46.3 32 64V304v48 80c0 26.5 21.5 48 48 48H496c26.5 0 48-21.5 48-48V304 152.2c0-18.2-19.4-29.7-35.4-21.1L352 215.4V152.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4V64c0-17.7-14.3-32-32-32H64z" />
+                    </svg>
+                    오뚜기
+                </label>
                 <input id="o" type="checkbox" />
+            </li>
+            <li>
+                <label for="samyang">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M64 32C46.3 32 32 46.3 32 64V304v48 80c0 26.5 21.5 48 48 48H496c26.5 0 48-21.5 48-48V304 152.2c0-18.2-19.4-29.7-35.4-21.1L352 215.4V152.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4V64c0-17.7-14.3-32-32-32H64z" />
+                    </svg>
+                    삼양
+                </label>
+                <input id="samyang" type="checkbox" />
+            </li>
+            <li>
+                <label for="paldo">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="1em"
+                        viewBox="0 0 576 512"><!--! Font Awesome Free 6.4.0 by @fontawesome - https://fontawesome.com License - https://fontawesome.com/license (Commercial License) Copyright 2023 Fonticons, Inc. -->
+                        <style>
+                            svg {
+                                fill: #bb2b2b
+                            }
+                        </style>
+                        <path
+                            d="M64 32C46.3 32 32 46.3 32 64V304v48 80c0 26.5 21.5 48 48 48H496c26.5 0 48-21.5 48-48V304 152.2c0-18.2-19.4-29.7-35.4-21.1L352 215.4V152.2c0-18.2-19.4-29.7-35.4-21.1L160 215.4V64c0-17.7-14.3-32-32-32H64z" />
+                    </svg>
+                    팔도
+                </label>
+                <input id="paldo" type="checkbox" />
             </li>
         </ul>
     </nav>
@@ -167,7 +372,8 @@
             <span>팔도비빔면</span>
         </a>
         <a class="cup-ramen" href="#">
-            <img src="https://i.namu.wiki/i/jClhQW9IzWzChMsYJCk3XutdPxZDgidOQWTLIl-RaTiQKTC2k9DpkKexh7AiW-_Zyxfa7tmGqClNc4d8e0Va6w.webp" />
+            <img
+                src="https://i.namu.wiki/i/jClhQW9IzWzChMsYJCk3XutdPxZDgidOQWTLIl-RaTiQKTC2k9DpkKexh7AiW-_Zyxfa7tmGqClNc4d8e0Va6w.webp" />
             <span>튀김우동</span>
         </a>
         <a class="cup-ramen" href="#">
