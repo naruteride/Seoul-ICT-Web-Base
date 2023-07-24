@@ -60,6 +60,13 @@ function drawBoard() {
     }
 }
 
+// 5분 지나면 끄기
+function timeOver() {
+    setTimeout(() => {
+        console.log("5분이 지나서 게임이 종료되었습니다.");
+        rl.close();
+    })
+}
 
 // 입력받기
 function getInput() {
@@ -67,14 +74,14 @@ function getInput() {
     rl.on("line", (line) => {
         let [x, y] = line.split(",").map(element => parseInt(element));
         y = flipY(y);
-        if (!checkInput(x, y)) {
-            console.log("올바르지 않은 입력입니다.");
-            getInput();
-        } else {
+        if (checkInput(x, y)) {
             // 바둑판에 바둑돌 놓기
             board[y][x] = turn;
             drawBoard();
             turn ? turn = white : turn = black;
+            getInput();
+        } else {
+            console.log("올바르지 않은 입력입니다.");
             getInput();
         }
     });
@@ -97,6 +104,8 @@ function checkInput(x, y) {
 
 
 
+
 explainRules();
 drawBoard();
+timeOver();
 getInput();
