@@ -28,7 +28,6 @@ function explainRules() {
     console.log("예를 들어, '15,15'를 입력하면 가장 중앙에 바둑돌을 두고,\n '29,0'을 입력하면 가장 우측 하단에 바둑돌을 둡니다.")
     console.log("게임 시작 후 5분이 지나면 종료됩니다.");
     console.log("지금부터 서로 죽여라.");
-    console.log("");
 }
 
 // 바둑판 그리기
@@ -146,7 +145,38 @@ function checkWinning() {
         }
     }
 
-    //
+    // 역슬래시 방향 대각선 검사 (↘)
+    for (let y = 0; y < board.length; y++) {
+        for (let x = 0; x < board.length; x++) {
+            if (board[y][x] != null) {
+                if (board[y][x] == board[y - 1][x - 1]) {
+                    continuity++;
+                    if (continuity >= 5) {
+                        return true;
+                    }
+                } else {
+                    continuity = 1;
+                }
+            }
+        }
+    }
+
+    // 슬래시 방향 대각선 검사 (↙)
+    for (let y = 0; y < board.length; y++) {
+        for (let x = 0; x < board.length; x++) {
+            if (board[y][x] != null) {
+                if (board[y][x] == board[y - 1][x + 1]) {
+                    continuity++;
+                    if (continuity >= 5) {
+                        return true;
+                    }
+                } else {
+                    continuity = 1;
+                }
+            }
+        }
+    }
+
     return false;
 }
 
