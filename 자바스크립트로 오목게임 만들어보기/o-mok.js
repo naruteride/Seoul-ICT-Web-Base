@@ -1,16 +1,21 @@
-const readline = require('readline');
+import * as readline from 'node:readline/promises';
 
-// 바둑판의 크기
-const boardSize = 30;
-// 바둑판
-const board = Array.from(Array(boardSize), () => Array(boardSize).fill(-1));
+const rl = readline.createInterface({
+	input: process.stdin,
+	output: process.stdout,
+});
+
 // 백돌
 const white = 0;
 // 흑돌
 const black = 1;
+// 바둑판의 크기
+const boardSize = 30;
+// 바둑판
+const board = Array.from(Array(boardSize), () => Array(boardSize).fill(null));
 
 // 바둑판 그리기
-function drawInit() {
+function drawBoard() {
     for (let y = 0; y < boardSize; y++) {
         let line = " ";
         for (let x = 0; x < boardSize; x++) {
@@ -38,4 +43,4 @@ function drawInit() {
     }
 }
 
-drawInit();
+drawBoard();
