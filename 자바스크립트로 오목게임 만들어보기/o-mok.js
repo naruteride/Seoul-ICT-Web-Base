@@ -78,7 +78,7 @@ function getInput() {
             // 바둑판에 바둑돌 두기
             board[y][x] = turn;
             drawBoard();
-            if (checkWinning) {
+            if (checkWinning()) {
                 console.log((turn ? "흑" : "백") + "이 이겼습니다!");
                 return;
             }
@@ -112,11 +112,11 @@ function checkInput(x, y) {
 // 그 다음 검사에서 값이 연속된다면 continuity를 1 증가시킴.
 // continuity가 5 이상이 되면 true를 반환함.
 function checkWinning() {
-    continuity = 0;
+    let continuity = 0;
     // x축 검사
     for (let y = 0; y < board.length; y++) {
         for (let x = 0; x < board.length; x++) {
-            console.log(`보드: ${board[x][y]} x: ${x} y: ${y}`);
+            // console.log(`보드: ${board[x][y]} x: ${x} y: ${y}`);
             if (board[y][x] != null) {
                 if (board[y][x] == board[y][x - 1]) {
                     continuity++;
@@ -129,6 +129,24 @@ function checkWinning() {
             }
         }
     }
+
+    // y축 검사
+    for (let x = 0; x < board.length; x++) {
+        for (let y = 0; y < board.length; y++) {
+            if (board[y][x] != null) {
+                if (board[y][x] == board[y - 1][x]) {
+                    continuity++;
+                    if (continuity >= 5) {
+                        return true;
+                    }
+                } else {
+                    continuity = 1;
+                }
+            }
+        }
+    }
+
+    //
     return false;
 }
 
