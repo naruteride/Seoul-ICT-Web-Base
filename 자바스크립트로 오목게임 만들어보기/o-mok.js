@@ -70,14 +70,12 @@ function getInput() {
         if (!checkInput(x, y)) {
             console.log("올바르지 않은 입력입니다.");
             getInput();
-            return ;
         } else {
             // 바둑판에 바둑돌 놓기
             board[y][x] = turn;
             drawBoard();
             turn ? turn = white : turn = black;
             getInput();
-            return ;
         }
     });
 }
@@ -89,7 +87,7 @@ function flipY(y) {
 
 // 올바른 값을 입력했는지 검사
 function checkInput(x, y) {
-    if (x < 1 || x > boardSize || y < 1 || y > boardSize) {
+    if (x < 0 || x > boardSize - 1 || y < 0 || y > boardSize - 1) {
         return false;
     } else if (board[y][x] != null) {
         return false;
