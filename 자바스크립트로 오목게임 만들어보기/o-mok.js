@@ -1,8 +1,8 @@
 import * as readline from 'node:readline/promises';
 
 const rl = readline.createInterface({
-	input: process.stdin,
-	output: process.stdout,
+    input: process.stdin,
+    output: process.stdout,
 });
 
 // 백돌
@@ -53,4 +53,34 @@ function checkInput(x, y) {
     return true;
 }
 
+// y축 뒤집는 함수
+function flipY(y) {
+    return (boardSize - 1) - y;
+}
+
+// 입력받기
+function GetInput() {
+    console.log("바둑돌을 둘 좌표를 입력해주세요:")
+    rl.on("line", (line) => {
+        let [x, y] = line.split(",").map(element => parseInt(element));
+        y = flipY(y);
+        if (!checkInput(x, y)) {
+            console.log("올바르지 않은 입력입니다.");
+            GetInput();
+        }
+
+        rl.close();
+    });
+}
+
+function explainRules() {
+    console.log("바둑판을 좌표평면에 투영했을 때, 가장 좌측 하단이 원점입니다.");
+    console.log("좌푯값을 입력하면 해당 위치에 바둑돌을 둡니다.");
+    console.log("예를 들어, '15,15'를 입력하면 가장 중앙에 바둑돌을 두고,\n '29,0'을 입력하면 가장 우측 하단에 바둑돌을 둡니다.")
+    console.log("게임 시작 후 5분이 지나면 종료됩니다.");
+    console.log("지금부터 서로 죽여라.");
+    console.log("");
+}
+
+explainRules();
 drawBoard();
