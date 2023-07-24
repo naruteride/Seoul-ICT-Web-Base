@@ -71,14 +71,14 @@ function getInput() {
             console.log("올바르지 않은 입력입니다.");
             getInput();
             return ;
+        } else {
+            // 바둑판에 바둑돌 놓기
+            board[y][x] = turn;
+            drawBoard();
+            turn ? turn = white : turn = black;
+            getInput();
+            return ;
         }
-
-        // 바둑판에 바둑돌 놓기
-        board[y][x] = turn;
-        drawBoard();
-        turn ? turn = white : turn = black;
-        getInput();
-        return ;
     });
 }
 
