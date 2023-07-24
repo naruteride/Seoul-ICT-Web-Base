@@ -43,4 +43,14 @@ function drawBoard() {
     }
 }
 
+// 올바른 값을 입력했는지 검사
+function checkInput(x, y) {
+    if (x < 1 && x > boardSize && y < 1 && y > boardSize) {
+        return false;
+    } else if (board[y][x] != null) {
+        return false;
+    }
+    return true;
+}
+
 drawBoard();
