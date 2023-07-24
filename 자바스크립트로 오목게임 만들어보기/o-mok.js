@@ -7,10 +7,16 @@ const rl = readline.createInterface({
 
 // 백돌
 const white = 0;
+
 // 흑돌
 const black = 1;
+
+// 차례
+let turn = white;   // 백돌이 먼저 시작하는 게 맞나?
+
 // 바둑판의 크기
 const boardSize = 30;
+
 // 바둑판
 const board = Array.from(Array(boardSize), () => Array(boardSize).fill(null));
 
@@ -43,9 +49,14 @@ function drawBoard() {
     }
 }
 
+// y축 뒤집는 함수
+function flipY(y) {
+    return (boardSize - 1) - y;
+}
+
 // 올바른 값을 입력했는지 검사
 function checkInput(x, y) {
-    if (x < 1 && x > boardSize && y < 1 && y > boardSize) {
+    if (x < 1 || x > boardSize || y < 1 || y > boardSize) {
         return false;
     } else if (board[y][x] != null) {
         return false;
@@ -53,14 +64,9 @@ function checkInput(x, y) {
     return true;
 }
 
-// y축 뒤집는 함수
-function flipY(y) {
-    return (boardSize - 1) - y;
-}
-
 // 입력받기
 function GetInput() {
-    console.log("바둑돌을 둘 좌표를 입력해주세요:")
+    console.log((turn ? "흑" : "백") + "돌을 둘 좌표를 입력해주세요:")
     rl.on("line", (line) => {
         let [x, y] = line.split(",").map(element => parseInt(element));
         y = flipY(y);
@@ -69,6 +75,7 @@ function GetInput() {
             GetInput();
         }
 
+        turn ? turn = white : turn = black;
         rl.close();
     });
 }
@@ -84,3 +91,4 @@ function explainRules() {
 
 explainRules();
 drawBoard();
+GetInput();
