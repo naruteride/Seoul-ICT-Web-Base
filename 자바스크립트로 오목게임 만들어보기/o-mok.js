@@ -65,13 +65,13 @@ function timeOver() {
     setTimeout(() => {
         console.log("5분이 지나서 게임이 종료되었습니다.");
         rl.close();
-    })
-}
+    }, 300000);
+};
 
 // 입력받기
-function getInput() {
+async function getInput() {
     console.log((turn ? "흑" : "백") + "돌을 둘 좌표를 입력해주세요:")
-    rl.on("line", (line) => {
+    rl.once("line", async (line) => {
         let [x, y] = line.split(",").map(element => parseInt(element));
         y = flipY(y);
         if (checkInput(x, y)) {
@@ -79,10 +79,10 @@ function getInput() {
             board[y][x] = turn;
             drawBoard();
             turn ? turn = white : turn = black;
-            getInput();
+            await getInput();
         } else {
             console.log("올바르지 않은 입력입니다.");
-            getInput();
+            await getInput();
         }
     });
 }
