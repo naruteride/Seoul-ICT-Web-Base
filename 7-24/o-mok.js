@@ -1,24 +1,34 @@
-const boardSize = 30; // 바둑판의 크기
+const readline = require('readline');
 
-const white = 0; // 백돌
-const black = 1; // 흑돌
+// 바둑판의 크기
+const boardSize = 30;
+// 바둑판
+const board = Array.from(Array(boardSize), () => Array(boardSize).fill(-1));
+// 백돌
+const white = 0;
+// 흑돌
+const black = 1;
 
 // 바둑판 그리기
 function drawInit() {
-    for (let i = 0; i < boardSize; i++) {
+    for (let y = 0; y < boardSize; y++) {
         let line = " ";
-        for (let j = 0; j < boardSize; j++) {
-            if (i === 0) {
-                if (j === 0) line += "┌ ";
-                else if (j === boardSize - 1) line += "┐ ";
+        for (let x = 0; x < boardSize; x++) {
+            if (board[y][x] === white) {
+                line += '0 ';
+            } else if (board[y][x] === black) {
+                line += '1 ';
+            } else if (y === 0) {
+                if (x === 0) line += "┌ ";
+                else if (x === boardSize - 1) line += "┐ ";
                 else line += "┬ ";
-            } else if (j === 0) {
-                if (i === boardSize - 1) line += "└ ";
+            } else if (x === 0) {
+                if (y === boardSize - 1) line += "└ ";
                 else line += "├ ";
-            } else if (j === boardSize - 1) {
-                if (i === boardSize - 1) line += "┘ ";
+            } else if (x === boardSize - 1) {
+                if (y === boardSize - 1) line += "┘ ";
                 else line += "┤ ";
-            } else if (i === boardSize - 1) {
+            } else if (y === boardSize - 1) {
                 line += "┴ ";
             } else {
                 line += "┼ ";
