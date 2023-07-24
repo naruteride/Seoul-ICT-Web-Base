@@ -69,9 +69,9 @@ function timeOver() {
 };
 
 // 입력받기
-async function getInput() {
+function getInput() {
     console.log((turn ? "흑" : "백") + "돌을 둘 좌표를 입력해주세요:")
-    rl.once("line", async (line) => {
+    rl.once("line", (line) => {
         let [x, y] = line.split(",").map(element => parseInt(element));
         y = flipY(y);
         if (checkInput(x, y)) {
@@ -79,10 +79,10 @@ async function getInput() {
             board[y][x] = turn;
             drawBoard();
             turn ? turn = white : turn = black;
-            await getInput();
+            getInput();
         } else {
             console.log("올바르지 않은 입력입니다.");
-            await getInput();
+            getInput();
         }
     });
 }
