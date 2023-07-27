@@ -2,7 +2,7 @@
 
 | *7월 26일 과제*
 
-## > 예시 코드
+> 예시 코드
 ```HTML
 <!DOCTYPE html>
 <html lang="ko">
