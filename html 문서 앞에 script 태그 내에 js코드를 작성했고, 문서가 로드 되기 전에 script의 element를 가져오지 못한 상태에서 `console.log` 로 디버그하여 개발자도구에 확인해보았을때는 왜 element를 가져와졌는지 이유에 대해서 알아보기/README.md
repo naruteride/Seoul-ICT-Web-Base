@@ -41,8 +41,8 @@
 ```
 
 ## 왜 Element를 가져오지 못 하는가?
-- 웹브라우저는 HTML 코드를 절차지향적으로 읽고 실행한다.
-- `document.getElementsByTagName` 을 대상 Element보다 위에 작성할 경우, 대상 Element가 아직 실행(로드)되지 않았기 때문에 읽을 수 없다.
+- 웹브라우저는 HTML 코드를 **절차지향적**으로 읽고 실행한다.
+- `document.getElementsByTagName` 을 대상 Element보다 위에서 작성했을 경우, 대상 Element가 아직 **실행(로드)**되지 않았기 때문에 읽을 수 없다.
 - 따라서 `<head>` 태그 내의 `<script>` 코드는 Element에 접근할 수 없다.
 
 
