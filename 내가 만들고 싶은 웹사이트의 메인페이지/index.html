@@ -12,6 +12,32 @@
 
     <!-- Stylesheet -->
     <link rel="stylesheet" href="./style.css">
+
+    <script>
+        function addCheckboxEventListeners() {
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            
+            checkboxes.forEach((checkbox) => {
+                checkbox.addEventListener('click', handleCheckboxClick);
+            });
+        }
+    
+        function handleCheckboxClick(event) {
+            const label = event.target.parentElement;
+            
+            const isChecked = event.target.checked;
+            
+            if (isChecked) {
+                label.classList.add('highlight');
+            } else {
+                label.classList.remove('highlight');
+            }
+        }
+    
+        document.addEventListener('DOMContentLoaded', () => {
+            addCheckboxEventListeners();
+        });
+    </script>
 </head>
 
 <body>

@@ -180,3 +180,9 @@ footer {
     backdrop-filter: blur(10px);
     box-shadow: 0 -3px 3px -3px rgba(0, 0, 0, 0.125);
 }
+
+.highlight {
+    background-color: #FF4D4D;
+    color: #fff;
+    box-shadow: 0 0 0.2rem #bb2b2b;
+}
