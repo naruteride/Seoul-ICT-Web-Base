@@ -8,15 +8,15 @@
 - 변환된 숫자의 크기를 비교한다.
 
 ### 결론
-- 즉, 문자끼리 비교할 때는 변환하는 과정을 한 번 거치기 때문에, 숫자 비교에 비해 상대적으로 불리하다.
+- 즉, 문자끼리 비교할 때는 변환하는 과정을 한 번 더 거치기 때문에, 숫자 비교에 비해 상대적으로 불리하다.
 
 ### 샘플 코드
 ```py
 import time
 import random
 
-numbers = [random.randint(1, 10) for _ in range(10)]
-string = [chr(random.randint(1, 10) + 65) for _ in range(10)]
+numbers = [random.randint(1, 10) for _ in range(1000)]
+string = [chr(random.randint(1, 10) + 65) for _ in range(1000)]
 print(numbers)  # [3, 8, 5, 2, 9, 7, 10, 1, 6, 4]
 print(string)   # ['J', 'K', 'G', 'B', 'C', 'K', 'B', 'I', 'E', 'F']
 
