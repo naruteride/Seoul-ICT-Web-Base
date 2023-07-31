@@ -16,4 +16,4 @@
     - [x] ~~Web-API를 이용하여 본인의 웹사이트의 기능을 구현한 후 코드와 작동되는 화면을 영상 또는 스크린샷을 찍어서 첨부하기~~
     - [ ] 내가 구현해야할 기능들을 명세하고 명세한 내용에 web API에 어느 기능들을 사용해야하는지 미리 자료조사하여 어떻게 구현할지 글로 표현하여 작성하여 제줄하기
 ### 2023-07-28
-- [ ] webAPI의 dialog box인 alert(), confirm() 메소드는 window나 document 없이 바로 사용할 수 있는 이유 찾아보기
+- [x] ~~webAPI의 dialog box인 alert(), confirm() 메소드는 window나 document 없이 바로 사용할 수 있는 이유 찾아보기~~
