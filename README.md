@@ -23,3 +23,5 @@
 - [x] ~~자기 컴퓨터에 mysql 데이터베이스 설치하기 + HeidiSQL 또는 Dbeaver 프로그램을 설치한 후 mysql을 localhost로 호스팅되는 것 까지 세팅하기~~
 ### 2023-08-01
 - [x] ~~pandas로 my_data.csv를 수정하여 저장하기~~
+### 2023-08-02
+- [x] ~~dbeaver 또는 DBMS 툴로 내 웹사이트의 ERD를 그려서 스크린샷 찍어서 제출하기~~
