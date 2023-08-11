@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>JavaScript Clock</title>
+  <style>
+    @font-face {
+      font-family: 'LAB디지털';
+      src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_20-07@1.0/LAB디지털.woff') format('woff');
+      font-weight: normal;
+      font-style: normal;
+    }
+
+    * {
+      font-family: 'LAB디지털';
+      box-sizing: border-box;
+      font-size: 32px;
+    }
+
+    body {
+      margin: 0;
+      color: rgb(255, 16, 16);
+      background-color: rgb(200, 88, 88);
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background-image: linear-gradient(90deg, rgba(255, 255, 255, 0.125) 1px, transparent 1px),
+        linear-gradient(180deg, rgba(255, 255, 255, 0.125) 1px, transparent 1px);
+      background-size: 4rem 4rem;
+    }
+
+    #clock-container {
+      padding: 0.3rem 0;
+      position: relative;
+      background-color: rgb(114, 13, 13);
+    }
+
+    #다차원해석억제한계 {
+      position: absolute;
+      background-color: rgb(114, 13, 13);
+      left: 0;
+      top: -1.3rem;
+      padding: 0.2rem 0 0.2rem 0.3rem;
+      font-size: 0.75rem;
+      color: white;
+      letter-spacing: -0.08em;
+    }
+
+    #live-time-feed {
+      font-family: sans-serif;
+      position: absolute;
+      background-color: rgb(114, 13, 13);
+      left: 0;
+      top: -2rem;
+      padding: 0.1rem 0 0.1rem 0.3rem;
+      font-size: 0.4rem;
+      color: rgba(255, 255, 255, 0.5);
+      font-weight: 700;
+    }
+
+    .trapezoid {
+      position: absolute;
+      z-index: -10;
+      left: 0;
+      top: -1.3rem;
+      width: 8rem;
+      height: 0;
+      border-bottom: 1.2rem solid rgb(114, 13, 13);
+      border-left: 0.75rem solid transparent;
+      border-right: 0.75rem solid transparent;
+    }
+
+    .trapezoid2 {
+      position: absolute;
+      z-index: -10;
+      left: 0;
+      top: -2rem;
+      width: 4.5rem;
+      height: 0;
+      border-bottom: 1.2rem solid rgb(114, 13, 13);
+      border-left: 0.75rem solid transparent;
+      border-right: 0.75rem solid transparent;
+    }
+
+    .clock {
+      min-width: 360px;
+      margin: 0 auto;
+      padding: 0.3rem 3rem;
+      text-align: center;
+      background-color: rgb(114, 13, 13);
+      border-top: rgb(179, 23, 23) solid 0.1rem;
+      border-bottom: rgb(179, 23, 23) solid 0.1rem;
+    }
+
+    .today {
+      margin-bottom: 10px;
+    }
+
+    .time {
+      margin-top: 10px;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="clock-container">
+    <div id="다차원해석억제한계">
+      다차원해석억제한계
+    </div>
+    <div class="trapezoid"></div>
+    <div id="live-time-feed">
+      LIVE TIME FEED
+    </div>
+    <div class="trapezoid2"></div>
+    <div class="clock">
+      <div id="today" class="today"></div>
+      <div id="time" class="time"></div>
+    </div>
+  </div>
+  <script>
+    // 요소 선택
+    const todayDiv = document.getElementById('today');
+    const timeDiv = document.getElementById('time');
+
+    // getTime 함수
+    function getTime() {
+      let now = new Date();
+      let year = now.getFullYear();
+      let month = now.getMonth() + 1;
+      let date = now.getDate();
+      let hour = now.getHours();
+      let minute = now.getMinutes();
+      let second = now.getSeconds();
+
+      month = month < 10 ? `0${month}` : month;
+      date = date < 10 ? `0${date}` : date;
+      hour = hour < 10 ? `0${hour}` : hour;
+      minute = minute < 10 ? `0${minute}` : minute;
+      second = second < 10 ? `0${second}` : second;
+
+      todayDiv.textContent = `${year}년 ${month}월 ${date}일`
+      timeDiv.textContent = `${hour}:${minute}:${second}`
+    }
+
+    // setInterval 메소드
+    getTime()
+    setInterval(getTime, 1000);
+  </script>
+</body>
+
+</html>
