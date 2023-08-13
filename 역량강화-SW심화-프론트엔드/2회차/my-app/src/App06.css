@@ -1,0 +1,92 @@
+@charset "utf-8";
+
+@font-face {
+  font-family: 'CookieRun-Regular';
+  src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/CookieRun-Regular.woff') format('woff');
+  font-weight: normal;
+  font-style: normal;
+}
+
+* {
+  font-family: 'CookieRun-Regular';
+  box-sizing: border-box;
+}
+
+html {
+  font-size: 32px;
+}
+
+body {
+  margin: 0;
+  background-color: #a7beec;
+  background-image: radial-gradient(#f0f0f0 4px, transparent 4px);
+  background-size: 30px 30px;
+
+}
+
+.container {
+  width: 500px;
+  height: 100vh;
+  margin: 0 auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.lotto {
+  padding: 2rem 2rem 1rem 2rem;
+  text-align: center;
+  background-color: rgba(255, 255, 255, 0.125);
+  border-radius: 1rem;
+  backdrop-filter: blur(3px);
+  box-shadow: 0 0 1rem -0.5rem rgba(0, 0, 0, 0.125);
+}
+
+.numbers {
+  width: 500px;
+  height: 60px;
+  border: 1px solid black;
+  border-radius: 10px;
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.eachnum {
+  font-size: 0.75em;
+  width: 50px;
+  height: 50px;
+  border-radius: 25px;
+  color: white;
+  background-color: red;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+button {
+  font-size: 0.5em;
+  width: 100px;
+  height: 40px;
+  border: none;
+  border-radius: 6px;
+  color: white;
+  background-color: rgb(134, 114, 250);
+  cursor: pointer;
+  margin-top: 1rem;
+}
+
+button:first-of-type {
+  margin-right: 1rem;
+}
+
+button:active {
+  font-size: 0.6em;
+  width: 105px;
+  height: 42px;
+}
+
+h3 {
+  color: #003cb5;
+}
