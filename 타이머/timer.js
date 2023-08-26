@@ -9,6 +9,9 @@ let interval = setInterval(() => {
     if (countDownDate - new Date().getTime() < 0) {
         document.querySelector(".preview-join-button").click();
         clearInterval(interval);
+        setTimeout(() => {
+            document.querySelector(".join-audio-by-voip__join-btn").click();
+        }, 30000);
     }
 }, 30000);
 
